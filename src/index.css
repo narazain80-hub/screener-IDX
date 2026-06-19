@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #0B1120;
+  --bg-primary: #111827;
+  --bg-secondary: #1E293B;
+}
+
+html {
+  @apply dark;
+}
+
+body {
+  @apply bg-gradient-to-b from-dark-deep via-dark-primary to-dark-secondary text-slate-100;
+  font-family: 'Inter', system-ui, ui-sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+  @apply rounded-xl border border-white/5 bg-white/2 backdrop-blur-md shadow-subtle;
+}
+
+.card-secondary {
+  @apply rounded-lg border border-white/3 bg-white/1 backdrop-blur-sm;
+}
+
+.badge-success {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-emerald/20 text-accent-emerald;
+}
+
+.badge-warning {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-orange/20 text-accent-orange;
+}
+
+.badge-danger {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-red/20 text-accent-red;
+}
+
+.badge-info {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-blue/20 text-accent-blue;
+}
