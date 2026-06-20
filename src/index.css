@@ -11,11 +11,11 @@
 }
 
 html {
-  color-scheme: dark;
+  @apply dark;
 }
 
 body {
-  @apply bg-gradient-to-b from-dark-deep via-dark-primary to-dark-secondary text-slate-100;
+  @apply bg-gradient-to-b from-[#0B1120] via-[#111827] to-[#1E293B] text-slate-100;
   font-family: 'Inter', system-ui, ui-sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
