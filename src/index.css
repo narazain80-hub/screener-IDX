@@ -10,10 +10,6 @@
   --bg-secondary: #1E293B;
 }
 
-html {
-  @apply dark;
-}
-
 body {
   @apply bg-gradient-to-b from-[#0B1120] via-[#111827] to-[#1E293B] text-slate-100;
   font-family: 'Inter', system-ui, ui-sans-serif;
