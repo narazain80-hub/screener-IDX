@@ -18,11 +18,11 @@ body {
 }
 
 .card {
-  @apply rounded-xl border border-white/5 bg-white/2 backdrop-blur-md shadow-subtle;
+  @apply rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-md shadow-subtle;
 }
 
 .card-secondary {
-  @apply rounded-lg border border-white/3 bg-white/1 backdrop-blur-sm;
+  @apply rounded-lg border border-white/[0.03] bg-white/[0.01] backdrop-blur-sm;
 }
 
 .badge-success {
