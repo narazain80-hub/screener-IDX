@@ -40,3 +40,19 @@ body {
 .badge-info {
   @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-blue/20 text-accent-blue;
 }
+
+/* --- Fix / safety rules for pointer events --- */
+
+/* Pastikan elemen interaktif dasar menerima pointer events */
+a, button, input, textarea, select, [role="button"] {
+  pointer-events: auto;
+}
+
+/* Jika ada overlay yang memang sengaja memblokir klik, beri atribut data-blocking="true".
+   Script neutralizeFullscreenOverlays hanya menonaktifkan (pointer-events: none) elemen fullscreen
+   yang TIDAK memiliki data-blocking. Ini mencegah deteksi otomatis menonaktifkan overlay yang diperlukan. */
+
+/* Debug helper (opsional): beri outline pada elemen yang otomatis dinonaktifkan */
+[data-auto-disabled="true"] {
+  outline: 2px dashed rgba(255,0,0,0.35);
+}
