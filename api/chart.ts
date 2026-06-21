@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+// Import node-fetch dihapus karena Vercel sudah mendukung fetch bawaan
 
 const TTL = 1000 * 60 * 15 // 15 min
 const globalAny:any = globalThis as any
@@ -20,14 +20,26 @@ export default async function handler(req:any,res:any){
     const path = `/v8/finance/chart/${encodeURIComponent(String(symbol))}?range=${encodeURIComponent(String(range))}&interval=${encodeURIComponent(String(interval))}`
     const cached = cacheGet(path)
     if(cached) return res.status(200).json(cached)
-    const url = `https://query1.finance.yahoo.com${path}`
-    const r = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } })
-    if(!r.ok) return res.status(r.status).json({ error: 'yahoo failed' })
+
+    // Menggunakan query2 yang terkadang lebih ramah terhadap server Vercel
+    const url = `https://query2.finance.yahoo.com${path}`
+    const r = await fetch(url, { 
+      headers: { 
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'application/json'
+      } 
+    })
+    
+    if(!r.ok) {
+      // Kirim struktur kosong yang aman agar React tidak crash dan tombol web tetap bisa diklik
+      return res.status(200).json({ chart: { result: null, error: 'Yahoo blocked' } })
+    }
+    
     const json = await r.json()
     cacheSet(path, json)
     return res.status(200).json(json)
   }catch(err:any){
     console.error(err)
-    return res.status(500).json({ error: String(err) })
+    return res.status(200).json({ chart: { result: null, error: String(err) } })
   }
 }
